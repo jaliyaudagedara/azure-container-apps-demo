@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{4EB0E9C7-F66D-4CC7-88BA-05BAB143CB15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{0C274FC8-0475-4FCC-A574-F49D210F7C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\deployment.yml = .github\workflows\deployment.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{15D86C32-37B9-44A3-8874-3837E0A2E4E4}"
+	ProjectSection(SolutionItems) = preProject
+		deploy.ps1 = deploy.ps1
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{2697CADA-4578-4E6E-A5C5-3F074B194CF6}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components.yaml = dapr\components.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A7B22FE-D781-4C0B-AA51-D87754E40264}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContainerAppsDemo.Customers.Api", "src\ContainerAppsDemo.Customers.Api\ContainerAppsDemo.Customers.Api.csproj", "{C886A598-A35F-40E8-A985-8AF701CDEA72}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContainerAppsDemo.Orders.Api", "src\ContainerAppsDemo.Orders.Api\ContainerAppsDemo.Orders.Api.csproj", "{EB223679-8FE5-43EA-B3EF-6C1E000901FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContainerAppsDemo.Web.Blazor", "src\ContainerAppsDemo.Web.Blazor\ContainerAppsDemo.Web.Blazor.csproj", "{9297EC37-7F17-47F0-AC60-A6BB706BB6B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C886A598-A35F-40E8-A985-8AF701CDEA72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C886A598-A35F-40E8-A985-8AF701CDEA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C886A598-A35F-40E8-A985-8AF701CDEA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C886A598-A35F-40E8-A985-8AF701CDEA72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB223679-8FE5-43EA-B3EF-6C1E000901FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB223679-8FE5-43EA-B3EF-6C1E000901FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB223679-8FE5-43EA-B3EF-6C1E000901FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB223679-8FE5-43EA-B3EF-6C1E000901FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9297EC37-7F17-47F0-AC60-A6BB706BB6B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9297EC37-7F17-47F0-AC60-A6BB706BB6B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9297EC37-7F17-47F0-AC60-A6BB706BB6B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9297EC37-7F17-47F0-AC60-A6BB706BB6B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C274FC8-0475-4FCC-A574-F49D210F7C5D} = {4EB0E9C7-F66D-4CC7-88BA-05BAB143CB15}
+		{C886A598-A35F-40E8-A985-8AF701CDEA72} = {1A7B22FE-D781-4C0B-AA51-D87754E40264}
+		{EB223679-8FE5-43EA-B3EF-6C1E000901FB} = {1A7B22FE-D781-4C0B-AA51-D87754E40264}
+		{9297EC37-7F17-47F0-AC60-A6BB706BB6B4} = {1A7B22FE-D781-4C0B-AA51-D87754E40264}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F1CB2CB-9A7F-49C7-9F98-A9BF43B40915}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,45 @@
+﻿@page "/customers"
+
+<PageTitle>Customers</PageTitle>
+
+@using ContainerAppsDemo.Web.Blazor.Data
+@using ContainerAppsDemo.Web.Blazor.Services
+@inject ICustomerService CustomerService
+
+<h1>Customers</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (customers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in customers)
+            {
+                <tr>
+                    <td>@forecast.Id</td>
+                    <td>@forecast.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<Customer>? customers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        customers = await CustomerService.GetCustomers();
+    }
+}

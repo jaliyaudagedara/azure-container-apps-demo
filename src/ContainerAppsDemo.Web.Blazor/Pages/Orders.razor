@@ -1,0 +1,45 @@
+﻿@page "/orders"
+
+<PageTitle>Orders</PageTitle>
+
+@using ContainerAppsDemo.Web.Blazor.Data
+@using ContainerAppsDemo.Web.Blazor.Services
+@inject IOrderService OrderService
+
+<h1>Orders</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (orders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<Order>? orders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        orders = await OrderService.GetOrders();
+    }
+}
