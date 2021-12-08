@@ -8,7 +8,7 @@
 
 <h1>Orders</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<p>This component demonstrates fetching data from a ingress service using dapr.</p>
 
 @if (orders == null)
 {
@@ -24,7 +24,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var order in orders)
+            @foreach (Order order in orders)
             {
                 <tr>
                     <td>@order.Id</td>

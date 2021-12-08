@@ -8,7 +8,7 @@
 
 <h1>Customers</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<p>This component demonstrates fetching data from a ingress service using dapr.</p>
 
 @if (customers == null)
 {
@@ -24,11 +24,11 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in customers)
+            @foreach (Customer customer in customers)
             {
                 <tr>
-                    <td>@forecast.Id</td>
-                    <td>@forecast.Name</td>
+                    <td>@customer.Id</td>
+                    <td>@customer.Name</td>
                 </tr>
             }
         </tbody>
