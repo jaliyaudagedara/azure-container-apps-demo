@@ -1,9 +1,3 @@
-namespace ContainerAppsDemo.Web.Blazor.Data
-{
-    public class Customer
-    {
-        public int Id { get; set; }
+namespace ContainerAppsDemo.Web.Blazor.Data;
 
-        public string Name { get; set; }
-    }
-}
+public record Customer(int Id, string Name);

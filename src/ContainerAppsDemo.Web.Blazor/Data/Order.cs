@@ -1,9 +1,3 @@
-﻿namespace ContainerAppsDemo.Web.Blazor.Data
-{
-    public class Order
-    {
-        public int Id { get; set; }
+﻿namespace ContainerAppsDemo.Web.Blazor.Data;
 
-        public DateTime OrderDate { get; set; }
-    }
-}
+public record Order(int Id, DateTime OrderDate);
