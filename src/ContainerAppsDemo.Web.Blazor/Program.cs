@@ -3,7 +3,9 @@ using ContainerAppsDemo.Web.Blazor.Services;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers().AddDapr();
+builder.Services.AddControllers()
+	.AddDapr();
+
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
@@ -14,8 +16,8 @@ WebApplication? app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+	app.UseExceptionHandler("/Error");
+	app.UseHsts();
 }
 
 app.UseHttpsRedirection();

@@ -7,18 +7,20 @@ WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.MapGet("/customers", () =>
 {
-    var customers = new List<Customer>
-    {
-        new Customer(1, "John Doe"),
-        new Customer(2, "Jane Doe")
-    };
-    return customers;
+	List<Customer> customers = new()
+	{
+		new(1, "John Doe"),
+		new(2, "Jane Doe"),
+		new(3, "John Smith"),
+	};
+
+	return TypedResults.Ok(customers);
 })
 .WithName("GetCustomers");
 

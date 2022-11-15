@@ -1,0 +1,59 @@
+name: Container app - web-blazor
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'src/ContainerAppsDemo.Web.Blazor/**'
+env:
+  CONTAINER_APP_CONTAINER_NAME: capp-web-blazor-demo
+  CONTAINER_APP_NAME: capp-web-blazor-demo
+  CONTAINER_APP_RESOURCE_GROUP_NAME: rg-az-container-apps-demo
+  CONTAINER_REGISTRY_LOGIN_SERVER: ravana.azurecr.io
+  DOTNET_CORE_VERSION: 7.0.x
+  PROJECT_NAME_FOR_DOCKER: containers-apps-demo/web/blazor
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout to the branch
+      uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1.8.0
+      with:
+        include-prerelease: True
+        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+    - name: Log in to container registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - name: Build and push container image to registry
+      run: dotnet publish ./src/ContainerAppsDemo.Web.Blazor/ContainerAppsDemo.Web.Blazor.csproj -c Release -r linux-x64 -p:PublishProfile=DefaultContainer -p:ContainerImageTag=${{ github.sha }} --no-self-contained -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }} -bl
+    - name: Upload binlog for investigation
+      uses: actions/upload-artifact@v3
+      with:
+        if-no-files-found: error
+        name: binlog
+        path: msbuild.binlog
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Deploy to containerapp
+      uses: azure/CLI@v1
+      with:
+        inlineScript: >
+          az config set extension.use_dynamic_install=yes_without_prompt
+
+          az containerapp registry set --name ${{ env.CONTAINER_APP_NAME }} --resource-group ${{ env.CONTAINER_APP_RESOURCE_GROUP_NAME }} --server ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }} --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }}
+
+          az containerapp update --name ${{ env.CONTAINER_APP_NAME }} --container-name ${{ env.CONTAINER_APP_CONTAINER_NAME }} --resource-group ${{ env.CONTAINER_APP_RESOURCE_GROUP_NAME }} --image ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/${{ env.PROJECT_NAME_FOR_DOCKER }}:${{ github.sha }}
+    - name: logout
+      run: >
+        az logout
