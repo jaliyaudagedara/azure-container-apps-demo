@@ -1,3 +1,5 @@
+## Following is now obsolete, Update is in progress
+
 # Dapr Enabed Azure Container Apps
 
 The solution has three projects,
